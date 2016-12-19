@@ -1,0 +1,9 @@
+{
+	"name": "irc",
+	"version": 1.0,
+	"startup": "irc.js",
+  "type": "integration",
+	"config": [
+		
+	]
+}
