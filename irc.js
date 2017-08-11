@@ -20,16 +20,15 @@ exports.start = function (callback) {
 
     client = new irc.Client(exports.config.server,
                             exports.config.nick,
-                            {
-                                channels: exports.config.channels || []
-                            });
+                            exports.config || [] // This lets you simply set any custom irc node.js module's options by putting them into config, you can start with "channels", look at https://github.com/martynsmith/node-irc/blob/master/lib/irc.js for more
+                            );
 
     client.addListener('message', function (from, to, message) {
         let event = shim.createEvent(to, from, from, message);
         messageCallback(api, event);
     });
 
-    //Dump errors to the console
+    // Dump errors to the console
     client.addListener('error', function(message) {
         console.log('error: ', message);
     });
